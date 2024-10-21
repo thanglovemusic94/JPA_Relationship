@@ -24,7 +24,7 @@ public class TutorialDetails {
 //  @OneToOne(fetch = FetchType.LAZY)
 //  @MapsId
 //  @JoinColumn(name = "tutorial_id")
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "tutorial_id", referencedColumnName = "id")
   private Tutorial tutorial;
 

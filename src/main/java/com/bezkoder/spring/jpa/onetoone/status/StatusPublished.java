@@ -4,19 +4,19 @@ public enum StatusPublished {
     NO_PUBLISHED(0),
     PUBLISHED(1);
 
-    private int id;
+    private Integer id;
 
-    private StatusPublished(int id) {
+    private StatusPublished(Integer id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public static StatusPublished valueOf(int id) {
+    public static StatusPublished valueOf(Integer id) {
         for (StatusPublished value : values())
-            if (value.getId() == id)
+            if (value.getId().equals(id))
                 return value;
         return null;
     }

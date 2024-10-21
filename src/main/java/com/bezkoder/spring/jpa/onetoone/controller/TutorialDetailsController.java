@@ -11,6 +11,9 @@ import com.bezkoder.spring.jpa.onetoone.model.Tutorial;
 import com.bezkoder.spring.jpa.onetoone.repository.TutorialDetailsRepository;
 import com.bezkoder.spring.jpa.onetoone.repository.TutorialRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
@@ -21,11 +24,17 @@ public class TutorialDetailsController {
   @Autowired
   private TutorialRepository tutorialRepository;
 
+  @GetMapping("/details")
+  public ResponseEntity<List<TutorialDetails>> getFirstDetail() {
+    List<TutorialDetails> details = new ArrayList<TutorialDetails>();
+    detailsRepository.findAll().forEach(details::add);
+    return new ResponseEntity<>(details, HttpStatus.OK);
+  }
+
   @GetMapping({ "/details/{id}", "/tutorials/{id}/details" })
   public ResponseEntity<TutorialDetails> getDetailsById(@PathVariable(value = "id") String id) {
     TutorialDetails details = detailsRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Not found Tutorial Details with id = " + id));
-
+            .orElseThrow(() -> new ResourceNotFoundException("Not found Tutorial Details with id = " + id));
     return new ResponseEntity<>(details, HttpStatus.OK);
   }
 

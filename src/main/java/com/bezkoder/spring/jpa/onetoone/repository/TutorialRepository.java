@@ -15,6 +15,6 @@ public interface TutorialRepository extends JpaRepository<Tutorial, String> {
   List<Tutorial> findByPublished(StatusPublished published);
 
   @Query("select t from Tutorial t where (:title is null or upper(t.title) like upper(concat('%', :title, '%'))) " +
-          "and (:published is null or t.published =: published)" )
+          "and (:published is null or t.published =:published)" )
   List<Tutorial> findByTitleContaining(@Param("title") String title, @Param("published") StatusPublished published);
 }

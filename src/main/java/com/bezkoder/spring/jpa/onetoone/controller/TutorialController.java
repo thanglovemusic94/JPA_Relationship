@@ -62,7 +62,7 @@ public class TutorialController {
 
     _tutorial.setTitle(tutorial.getTitle());
     _tutorial.setDescription(tutorial.getDescription());
-    _tutorial.setPublished(tutorial.isPublished());
+    _tutorial.setPublished(tutorial.getPublished());
     
     return new ResponseEntity<>(tutorialRepository.save(_tutorial), HttpStatus.OK);
   }

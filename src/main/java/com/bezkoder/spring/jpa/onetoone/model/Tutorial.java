@@ -1,6 +1,7 @@
 package com.bezkoder.spring.jpa.onetoone.model;
 
 import com.bezkoder.spring.jpa.onetoone.status.StatusPublished;
+import com.bezkoder.spring.jpa.onetoone.status.StatusPublishedConverter;
 import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,6 +24,7 @@ public class Tutorial {
   @Column(name = "description")
   private String description;
 
+  @Convert(converter = StatusPublishedConverter.class)
   @Column(name = "published")
   private StatusPublished published;
 
@@ -59,8 +61,8 @@ public class Tutorial {
     this.description = description;
   }
 
-  public StatusPublished isPublished() {
-    return published;
+  public StatusPublished getPublished() {
+    return  published;
   }
 
   public void setPublished(StatusPublished isPublished) {
